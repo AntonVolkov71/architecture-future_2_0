@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - dev
+
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    env:
+      ENV: dev
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    defaults:
+      run:
+        working-directory: Task2Advanced/modules/vm
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Stage init
+        run: terraform init -backend-config=../../envs/$ENV/backend.hcl
+
+      - name: Stage plan
+        run: terraform plan -var-file=../../envs/$ENV/terraform.tfvars
+
+      - name: Stage apply
+        run: terraform apply -auto-approve -var-file=../../envs/$ENV/terraform.tfvars
+

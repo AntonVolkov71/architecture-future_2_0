@@ -1,4 +1,4 @@
-name       = "prod-practicum-vm"
+name       = "practicum-vm"
 hostname   = "practicum"
 user_name  = "volko"
 token      = "<token>"
@@ -6,6 +6,6 @@ cloud_id   = "<cloud_id>"
 folder_id  = "<folder_id>"
 cores      = 8
 memory     = 32
-disk_size  = 100
+disk_size  = 50
 ssh_key_path = "C:/Users/volko/.ssh/id_ed25519.pub"
 image_family = "ubuntu-2204-lts"

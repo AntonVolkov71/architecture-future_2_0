@@ -1,4 +1,4 @@
-name       = "prod-practicum-vm"
+name       = "practicum-vm"
 hostname   = "practicum"
 user_name  = "volko"
 token      = "<token>"

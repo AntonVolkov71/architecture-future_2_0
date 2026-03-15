@@ -27,8 +27,16 @@
 
 
 - запуск 
+  - используем разные конфигурации для окружений
+    - основная разница в характеристиках ВМ - ядра, RAM и хранилка
+  - создать файл `terraform.tfvars` на основе `terraform.tfvars.example`
+    - заполнить свои токены `token, cloud_id, folder_id`
+    - `token` - именно OAuth (в ya-cloud - для этого `Identity and Access Management` - сервисный аккаунт далее по инерции)
+      - махнуть неглядя, и получить OAuth - `https://oauth.yandex.ru/verification_code`
+    - `cloud_id` - идентификатор консоли ya-cloud
+    - `folder_id` - идентификатор каталога (скорее всего надо создать в ya-cloud)
   - выполнить из директории /Task1Advanced/modules/vm
-  - используем индивидуальный путь для своего окружения
+    - используем индивидуальный путь для своего окружения
     - `terraform apply -var-file="../../envs/dev/terraform.tfvars"`
   - подтверждение
     - ![ya-console.dashboard.png](results/ya-console.dashboard.png)

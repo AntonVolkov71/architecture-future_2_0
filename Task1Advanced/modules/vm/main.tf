@@ -4,6 +4,7 @@ terraform {
       source = "yandex-cloud/yandex"
     }
   }
+
 }
 
 provider "yandex" {
