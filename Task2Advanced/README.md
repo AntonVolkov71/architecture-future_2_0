@@ -48,5 +48,7 @@ versioning: optional
   - ![console.storage.buckets.volkov](results/console.storage.buckets.volkov.png)
   - ![console.storage.buckets.volkov.dev](results/console.storage.buckets.volkov.dev.png)
  
-- отсановка облака
-  - 
+- остановка terraform
+  - РУКАМИ
+  - добавил флоу `terraform-destroy.yml`
+  - заходим в репозиторий -> `Actions` и слева появится Terraform Destroy -> тыкаем на него и он запустит остановку Terraform
