@@ -71,7 +71,6 @@ variable "user_name" {
   type    = string
 }
 
-
 variable "timeout_create" {
   default = "10m"
 }
@@ -80,23 +79,6 @@ variable "timeout_delete" {
   default = "10m"
 }
 
-variable "ssh_key_path" {
-  default = ""
-}
-
-variable "s3_endpoint" {
-  type = string
-}
-
-variable "s3_bucket" {
-  type = string
-}
-
-variable "s3_region" {
-  type = string
-}
-
-variable "s3_key" {
-  // <путь_к_файлу_состояния_в_бакете>/<имя_файла_состояния>.tfstate
+variable "ssh_public_key" {
   type = string
 }

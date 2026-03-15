@@ -56,7 +56,7 @@ resource "yandex_compute_instance" "default" {
 
 
   metadata = {
-    ssh-keys = "${var.user_name}:${file(var.ssh_key_path)}"
+    ssh-keys = "${var.user_name}:${file(var.ssh_public_key)}"
   }
 
   timeouts {

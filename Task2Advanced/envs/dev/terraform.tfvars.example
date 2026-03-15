@@ -1,9 +1,9 @@
 name       = "practicum-vm"
 hostname   = "practicum"
 user_name  = "volko"
-token      = "<token>"
-cloud_id   = "<cloud_id>"
-folder_id  = "<folder_id>"
+token      = ""
+cloud_id   = ""
+folder_id  = ""
 cores      = 2
 memory     = 2
 disk_size  = 10
