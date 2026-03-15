@@ -48,3 +48,5 @@ versioning: optional
   - ![console.storage.buckets.volkov](results/console.storage.buckets.volkov.png)
   - ![console.storage.buckets.volkov.dev](results/console.storage.buckets.volkov.dev.png)
  
+- отсановка облака
+  - 
