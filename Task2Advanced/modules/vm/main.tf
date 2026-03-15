@@ -5,19 +5,7 @@ terraform {
     }
   }
 
-  backend "s3" {
-    endpoints = {
-      s3 = var.s3_endpoint
-    }
-    bucket = var.s3_bucket
-    region = var.s3_region
-    key    = var.s3_key
-
-    skip_region_validation      = true
-    skip_credentials_validation = true
-    skip_requesting_account_id  = true
-    skip_s3_checksum            = true
-  }
+  backend "s3" {}
 }
 
 provider "yandex" {
