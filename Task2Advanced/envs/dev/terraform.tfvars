@@ -1,4 +1,4 @@
-name         = "practicum-vm"
+name         = "dev-practicum-vm"
 hostname     = "practicum"
 user_name    = "volko"
 cores        = 2

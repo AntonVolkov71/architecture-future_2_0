@@ -24,30 +24,27 @@ versioning: optional
     - SSH_PUBLIC_KEY - копируем открытую часть, ибо в репозитории не будет доступа к нашему локальному ключу
 
 ### CI/CD
-- используем
-- 
-- поправка на 
-- то есть пришли к такому что терраформ теперь не знает про ключи, доступы, они берутся из репы, во как
-  - и теперь можем грузить в репозиторий файл terraform.tfvars
+- используем Github Actions
+  - `.github/workflows/terraform.yml`
+- так же используем разные переменные для окружений
+  - руками выставляем `ENV: dev`
+  - и далее файлы конфигураций будут браться автоматически из нужного окружения
+    - `-backend-config=../../envs/$ENV/backend.hcl` - конфиг для подключения Terraform к S3 Yandex Object Storage
+    - `-var-file=../../envs/$ENV/terraform.tfvars` - конфиг для подключения Terraform, но уже без паролей
+  - так же в `terraform.yml` - прописали правила, чтобы переменные теперь будут браться из репозитория
+- процесс CI/CD разделяем на шаги:
+  - чекаем репозиторий
+  - инициализируем Terraform
+  - проверяем коррэктность
+  - запускаем
+- удаление не делаем, ибо через 10 минут он удалится
 
-- создать секреты
-в репозитории проекта 
-Settings-Secrets and variables-Actions-New repository secret
-где AWS_ACCESS_KEY_ID - наш  ползователя в клауде
-  AWS_SECRET_ACCESS_KEY - его ключ
-
-- далее 
-
-
-- добавили в terraform/main.tf - данные по S3
-  - endpoint, bucket, region,
-    - ` key = "<путь_к_файлу_состояния_в_бакете>/<имя_файла_состояния>.tfstate"`
-
-
-- добавляем файлы конфигурации для backenda S3 в каждое окружение
-  - `envs/dev/backend.hcl`
-  - в котором есть ключ для своего окржуения где будет храниться state
-
-
-- по факту, что сделали
+- подтверждение
+  - action прошел -> в бакете создался bucket terraform-state-volkov-one -> создался объект dev -> в нем файл terraform.tfstate
+  - ![action](results/action.png)
+  - [action](results/action.txt)
+  - ![cloud.console](results/cloud.console.png)
+  - ![console.storage.buckets](results/console.storage.buckets.png)
+  - ![console.storage.buckets.volkov](results/console.storage.buckets.volkov.png)
+  - ![console.storage.buckets.volkov.dev](results/console.storage.buckets.volkov.dev.png)
  
