@@ -1,0 +1,43 @@
+@startuml
+title Будущее 2.0 Целевая архитектура Container
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(business, "Пользователи бизнеса", "Работает с отчетами")
+Person(analyst, "Аналитики", "Создает аналитику")
+
+System_Ext(clinics, "Системы клиник")
+System_Ext(fintech, "Финтех сервисы")
+System_Ext(ai, "ИИ-сервисы")
+
+System_Boundary(platform, "Будущее 2.0") {
+    Container(api, "API Gateway", "REST", "Единая точка доступа")
+    Container(events, "Event Streaming Platform", "Kafka", "Обмен событиями между доменами")
+    Container(processing, "Data Processing", "Flink / Spark", "Потоковая и batch обработка")
+
+    Container(lake, "Data Lake", "Object Storage", "Хранение сырых данных")
+    Container(lakehouse, "Data Lakehouse", "Iceberg", "Аналитические таблицы")
+    Container(catalog, "Data Catalog", "Metadata Service", "Каталог и управление метаданными")
+
+    Container(bi, "Self-Service BI Portal", "BI Tool", "Построение отчетов")
+}
+
+Rel(clinics, api, "отправляет данные")
+Rel(fintech, api, "отправляет данные")
+Rel(ai, api, "отправляет данные")
+
+Rel(api, events, "публикует события")
+
+Rel(events, processing, "stream")
+
+Rel(processing, lake, "пишет данные")
+Rel(processing, lakehouse, "создает таблицы")
+
+Rel(lakehouse, bi, "аналитические данные")
+
+Rel(business, bi, "использует")
+Rel(analyst, bi, "строит отчеты")
+
+Rel(lakehouse, catalog, "метаданные")
+
+@enduml
