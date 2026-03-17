@@ -13,10 +13,8 @@
 
 
 ### Решение
-- bounded-contexts.md - границы доменов
-- event-storming.md - основные события системы
-- aggregates.md - ключевые агрегаты
-- events.md - каталог доменных событий
-
-
-- justification.md - обоснование событийной архитектуры 
+- `bounded-contexts.drawio`, `bounded-contexts.jpg` - границы доменов
+- `event-storming.puml` - основные события системы
+- `aggregates.md` - ключевые агрегаты
+- `events.md` - каталог доменных событий
+- `justification.md` - обоснование событийной архитектуры
