@@ -1,0 +1,68 @@
+@startuml
+title Будущее 2.0 - Event Storming
+
+skinparam rectangle {
+  BackgroundColor #FFF2CC
+  BorderColor #333
+}
+
+skinparam component {
+  BackgroundColor #D5E8D4
+}
+
+skinparam database {
+  BackgroundColor #DAE8FC
+}
+
+actor Patient
+actor Doctor
+
+rectangle "Patient Domain" {
+  component "Register Patient"
+  rectangle "Event PatientRegistered"
+}
+
+rectangle "Fintech Domain" {
+  component "Create Invoice"
+  rectangle "Event InvoiceCreated"
+
+  component "Process Payment"
+  rectangle "Event PaymentCompleted"
+}
+
+rectangle "Clinical Domain" {
+  component "Medical Study"
+  rectangle "Event StudyCompleted"
+
+  component "AI Diagnosis"
+  rectangle "Event DiagnosisGenerated"
+}
+
+rectangle "Event Streaming Platform (Kafka)" as Kafka
+
+database "Data Lakehouse"
+
+Patient --> "Register Patient"
+Doctor --> "Medical Study"
+
+"Register Patient" --> "Event PatientRegistered"
+"Event PatientRegistered" --> "Create Invoice"
+
+"Create Invoice" --> "Event InvoiceCreated"
+"Event InvoiceCreated" --> "Process Payment"
+
+"Process Payment" --> "Event PaymentCompleted"
+
+"Medical Study" --> "Event StudyCompleted"
+"Event StudyCompleted" --> "AI Diagnosis"
+"AI Diagnosis" --> "Event DiagnosisGenerated"
+
+"Event PatientRegistered" --> Kafka
+"Event InvoiceCreated" --> Kafka
+"Event PaymentCompleted" --> Kafka
+"Event StudyCompleted" --> Kafka
+"Event DiagnosisGenerated" --> Kafka
+
+Kafka --> "Data Lakehouse"
+
+@enduml
