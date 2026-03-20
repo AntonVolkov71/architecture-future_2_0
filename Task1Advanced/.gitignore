@@ -1,0 +1,2 @@
+envs/*/terraform.tfvars
+!envs/*/terraform.tfvars.example

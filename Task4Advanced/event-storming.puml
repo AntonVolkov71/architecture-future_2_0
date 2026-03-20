@@ -1,0 +1,97 @@
+@startuml
+title Будущее 2.0 Event Storming
+
+left to right direction
+
+legend left
+|= Цвет |= Тип |
+|<#FFF2CC>| Actor |
+|<#DAE8FC>| Command |
+|<#F8CECC>| Event |
+|<#E1D5E7>| Domain |
+endlegend
+
+rectangle "Пациент" #FFF2CC
+rectangle "Врач" #FFF2CC
+rectangle "Биллинговая система" #FFF2CC
+
+rectangle "Patient Domain" #E1D5E7
+rectangle "Clinical Domain" #E1D5E7
+rectangle "Fintech Domain" #E1D5E7
+rectangle "Inventory Domain" #E1D5E7
+rectangle "Analytics Domain" #E1D5E7
+
+rectangle "Зарегистрировать пациента" #DAE8FC
+rectangle "Обновить профиль пациента" #DAE8FC
+rectangle "Назначить исследование" #DAE8FC
+rectangle "Завершить исследование" #DAE8FC
+rectangle "Сформировать диагноз" #DAE8FC
+rectangle "Создать счет" #DAE8FC
+rectangle "Провести оплату" #DAE8FC
+rectangle "Выдать кредит" #DAE8FC
+rectangle "Зарегистрировать оборудование" #DAE8FC
+rectangle "Запланировать обслуживание" #DAE8FC
+
+rectangle "PatientRegistered" #F8CECC
+rectangle "PatientProfileUpdated" #F8CECC
+rectangle "MedicalStudyRequested" #F8CECC
+rectangle "MedicalStudyCompleted" #F8CECC
+rectangle "DiagnosisGenerated" #F8CECC
+rectangle "InvoiceCreated" #F8CECC
+rectangle "PaymentCompleted" #F8CECC
+rectangle "PaymentFailed" #F8CECC
+rectangle "CreditIssued" #F8CECC
+rectangle "EquipmentRegistered" #F8CECC
+rectangle "EquipmentMaintenanceScheduled" #F8CECC
+
+"Пациент" --> "Зарегистрировать пациента"
+"Зарегистрировать пациента" --> "PatientRegistered"
+"PatientRegistered" --> "Patient Domain"
+
+"Пациент" --> "Обновить профиль пациента"
+"Обновить профиль пациента" --> "PatientProfileUpdated"
+"PatientProfileUpdated" --> "Patient Domain"
+
+"Врач" --> "Назначить исследование"
+"Назначить исследование" --> "MedicalStudyRequested"
+"MedicalStudyRequested" --> "Clinical Domain"
+
+"Врач" --> "Завершить исследование"
+"Завершить исследование" --> "MedicalStudyCompleted"
+"MedicalStudyCompleted" --> "Clinical Domain"
+
+"MedicalStudyCompleted" --> "Сформировать диагноз"
+"Сформировать диагноз" --> "DiagnosisGenerated"
+"DiagnosisGenerated" --> "Clinical Domain"
+
+"MedicalStudyCompleted" --> "Создать счет"
+"DiagnosisGenerated" --> "Создать счет"
+"Создать счет" --> "InvoiceCreated"
+"InvoiceCreated" --> "Fintech Domain"
+
+"Биллинговая система" --> "Провести оплату"
+"Провести оплату" --> "PaymentCompleted"
+"Провести оплату" --> "PaymentFailed"
+"PaymentCompleted" --> "Fintech Domain"
+"PaymentFailed" --> "Fintech Domain"
+
+"PaymentFailed" --> "Выдать кредит"
+"Выдать кредит" --> "CreditIssued"
+"CreditIssued" --> "Fintech Domain"
+
+"Зарегистрировать оборудование" --> "EquipmentRegistered"
+"EquipmentRegistered" --> "Inventory Domain"
+
+"Запланировать обслуживание" --> "EquipmentMaintenanceScheduled"
+"EquipmentMaintenanceScheduled" --> "Inventory Domain"
+
+"PatientRegistered" --> "Analytics Domain"
+"MedicalStudyCompleted" --> "Analytics Domain"
+"DiagnosisGenerated" --> "Analytics Domain"
+"InvoiceCreated" --> "Analytics Domain"
+"PaymentCompleted" --> "Analytics Domain"
+"CreditIssued" --> "Analytics Domain"
+"EquipmentRegistered" --> "Analytics Domain"
+
+
+@enduml
