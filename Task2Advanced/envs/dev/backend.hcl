@@ -3,7 +3,6 @@ bucket = "terraform-state-volkov-one"
 key = "dev/terraform.tfstate"
 
 region = "ru-central1"
-
 endpoint = "https://storage.yandexcloud.net"
 
 skip_region_validation = true
